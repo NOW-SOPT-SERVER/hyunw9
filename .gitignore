@@ -4,3 +4,4 @@
 *.md
 assignment_2/gradlew
 *.yml
+*.properties
