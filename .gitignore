@@ -1,0 +1,8 @@
+
+*.gradle
+*.bat
+*.md
+assignment_2/gradlew
+*.yml
+*.properties
+*.jar

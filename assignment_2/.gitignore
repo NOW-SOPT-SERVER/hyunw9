@@ -47,6 +47,8 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+
+
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
