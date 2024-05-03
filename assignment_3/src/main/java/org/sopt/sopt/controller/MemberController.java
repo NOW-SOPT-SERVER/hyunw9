@@ -29,22 +29,27 @@ public class MemberController {
   @GetMapping("/{memberId}")
   public ResponseEntity<MemberResponse> getMember(
       @PathVariable Long memberId) {
-    return new ResponseEntity<>(memberService.getMember(memberId), HttpStatus.OK);
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(memberService.getMember(memberId));
   }
 
   @GetMapping("/all")
   public ResponseEntity<List<MemberResponse>> getAllMember() {
-    return new ResponseEntity<>(memberService.getAllMember(),HttpStatus.OK);
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(memberService.getAllMember());
   }
 
   @PostMapping("/")
-  public ResponseEntity<MemberResponse> postMember(@RequestBody @Valid MemberRequest memberRequest) {
-    return new ResponseEntity<>(memberService.createMember(memberRequest), HttpStatus.CREATED);
+  public ResponseEntity<MemberResponse> postMember(
+      @RequestBody @Valid MemberRequest memberRequest) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(memberService.createMember(memberRequest));
   }
 
   @DeleteMapping("/{memberId}")
   public ResponseEntity<?> deleteMember(@PathVariable Long memberId) {
-    return new ResponseEntity<>(memberService.deleteMember(memberId), HttpStatus.OK);
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(memberService.deleteMember(memberId));
   }
 
 }
