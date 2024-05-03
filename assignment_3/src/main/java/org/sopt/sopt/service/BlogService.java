@@ -7,6 +7,7 @@ import org.sopt.sopt.common.dto.response.MessageResponse;
 import org.sopt.sopt.entity.Blog;
 import org.sopt.sopt.entity.Member;
 import org.sopt.sopt.exception.ErrorMessage;
+import org.sopt.sopt.exception.IllegalStateException;
 import org.sopt.sopt.exception.NotFoundException;
 import org.sopt.sopt.repository.BlogRepository;
 import org.sopt.sopt.repository.MemberRepository;
@@ -24,6 +25,7 @@ public class BlogService {
   public String create(Long memberId, BlogCreateRequest blogCreateRequest) {
 
     Member member = memberService.findById(memberId);
+    existsById(memberId);
     Blog blog = blogRepository.save(Blog.create(member, blogCreateRequest));
 
     return blog.getId().toString();
@@ -40,15 +42,20 @@ public class BlogService {
         .build();
   }
 
+  public String getUsernameForBlog(Long memberId) {
+    return memberRepository.findById(memberId)
+        .orElseThrow(() -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND)).getName();
+  }
+
   public Blog findById(Long memberId) {
     return blogRepository.findById(memberId).orElseThrow(
         () -> new NotFoundException(
             ErrorMessage.BLOG_NOT_FOUND));
   }
 
-  public String getUsernameForBlog(Long memberId) {
-    return memberRepository.findById(memberId)
-        .orElseThrow(() -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND)).getName();
+  private void existsById(Long memberId) {
+    if (blogRepository.existsById(memberId)) {
+      throw new IllegalStateException(ErrorMessage.USER_ALREADY_OWN);
+    }
   }
-
 }
