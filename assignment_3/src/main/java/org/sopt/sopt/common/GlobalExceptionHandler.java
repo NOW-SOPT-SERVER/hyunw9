@@ -1,7 +1,8 @@
 package org.sopt.sopt.common;
 
 import lombok.extern.slf4j.Slf4j;
-import org.sopt.sopt.common.dto.response.ErrorResponse;
+import org.sopt.sopt.common.dto.response.responseEnum.ErrorResponse;
+import org.sopt.sopt.exception.IllegalStateException;
 import org.sopt.sopt.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(NotFoundException.class)
   protected ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException e) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        .body(ErrorResponse.of(e.getErrorMessage().getStatus(), e.getMessage()));
+  }
+
+  @ExceptionHandler(IllegalStateException.class)
+  protected ResponseEntity<ErrorResponse> handleIllegalStateException(IllegalStateException e) {
+    return ResponseEntity.status(HttpStatus.CONFLICT)
         .body(ErrorResponse.of(e.getErrorMessage().getStatus(), e.getMessage()));
   }
 }
