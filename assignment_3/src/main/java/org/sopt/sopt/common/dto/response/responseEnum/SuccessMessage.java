@@ -1,4 +1,4 @@
-package org.sopt.sopt.common.dto.response;
+package org.sopt.sopt.common.dto.response.responseEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
 @Getter
-public enum SuccessMessageResponse {
+public enum SuccessMessage {
 
   BLOG_CREATED_SUCCESS(HttpStatus.CREATED.value(), "블로그 생성이 완료되었습니다."),
   POST_WRITE_SUCCESS(HttpStatus.CREATED.value(),"게시글 작성이 완료되었습니다."),

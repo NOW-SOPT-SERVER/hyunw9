@@ -1,4 +1,4 @@
-package org.sopt.sopt.common.dto.response;
+package org.sopt.sopt.common.dto.response.responseEnum;
 
 
 import org.sopt.sopt.exception.ErrorMessage;
