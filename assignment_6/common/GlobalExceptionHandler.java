@@ -1,10 +1,10 @@
 package org.sopt.sopt.common;
 
 import lombok.extern.slf4j.Slf4j;
-import org.sopt.sopt.auth.exception.UnauthorizedException;
+import org.sopt.sopt.auth.application.exception.UnauthorizedException;
 import org.sopt.sopt.common.dto.response.responseEnum.ErrorResponse;
-import org.sopt.sopt.exception.IllegalStateException;
-import org.sopt.sopt.exception.NotFoundException;
+import org.sopt.sopt.common.exception.IllegalStateException;
+import org.sopt.sopt.common.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
