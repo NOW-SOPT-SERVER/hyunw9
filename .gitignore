@@ -6,3 +6,4 @@ assignment_2/gradlew
 *.yml
 *.properties
 *.jar
+/clone_carrot_2
